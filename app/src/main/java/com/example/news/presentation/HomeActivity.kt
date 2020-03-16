@@ -3,7 +3,6 @@ package com.example.news.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.news.R
-import com.example.news.presentation.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {

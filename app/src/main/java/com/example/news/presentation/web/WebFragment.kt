@@ -2,7 +2,6 @@ package com.example.news.presentation.web
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,14 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.example.news.R
 import com.example.news.data.api.hasNetwork
-import com.example.news.domain.use_cases.KEY_ID
+import com.example.news.presentation.KEY_ID
 import kotlinx.android.synthetic.main.web_fragment.*
 
 class WebFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = WebFragment()
-    }
 
     private lateinit var viewModel: WebViewModel
     private var id: String? = null
@@ -47,7 +42,6 @@ class WebFragment : Fragment() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                Log.d("assas","progressWeb: $progressWeb")
                 progressWeb?.apply { visibility = View.GONE }
             }
         }
@@ -66,10 +60,14 @@ class WebFragment : Fragment() {
                 val dateTime =
                     requireContext().getString(R.string.published) + " " + it.webPublicationDate
                 tv_DateTime.text = dateTime
-
                 webView.loadUrl(it.webUrl)
             })
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        webView?.destroy()
     }
 
 }

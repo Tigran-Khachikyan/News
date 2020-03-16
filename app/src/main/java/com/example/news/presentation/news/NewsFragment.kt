@@ -14,12 +14,7 @@ import com.example.news.presentation.RecyclerViewAdapter
 import com.example.news.presentation.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_list.*
 
-
 class NewsFragment : BaseFragment() {
-
-    companion object {
-        fun newInstance() = NewsFragment()
-    }
 
     private lateinit var viewModel: NewsViewModel
     private lateinit var adapter: RecyclerViewAdapter

@@ -23,6 +23,7 @@ class RecyclerViewAdapter(
         onHolderClickListener: OnHolderClickListener?,
         onFavoriteChangeListener: OnFavoriteChangeListener?
     ) : RecyclerView.ViewHolder(itemView) {
+
         val tvCategory: TextView = itemView.findViewById(R.id.tvCategory)
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         val star: ImageView = itemView.findViewById(R.id.iv_star)
@@ -36,7 +37,6 @@ class RecyclerViewAdapter(
                     else onFavoriteChangeListener?.removeFromFavourites(it.id)
                 }
             }
-
             itemView.setOnClickListener {
                 val article = articles?.get(adapterPosition)
                 article?.let {
@@ -44,6 +44,7 @@ class RecyclerViewAdapter(
                 }
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {

@@ -14,6 +14,5 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
             repository.updateDb()
         }
     }
-
-     val news: LiveData<List<Article>> = repository.getNews()
+    val news: LiveData<List<Article>> = repository.getNews()
 }

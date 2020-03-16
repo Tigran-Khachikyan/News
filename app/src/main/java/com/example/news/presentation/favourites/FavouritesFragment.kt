@@ -18,10 +18,6 @@ import kotlinx.android.synthetic.main.fragment_list.*
 
 class FavouritesFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() =
-            FavouritesFragment()
-    }
 
     private lateinit var viewModel: FavouritesViewModel
     private lateinit var adapter: RecyclerViewAdapter
@@ -38,10 +34,10 @@ class FavouritesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener { it ->
             showDialog(requireContext()) {
                 Snackbar.make(
-                        view,
+                        it,
                         requireContext().getString(R.string.successfullyRemoved),
                         Snackbar.LENGTH_LONG
                     )
@@ -63,7 +59,7 @@ class FavouritesFragment : BaseFragment() {
 
         viewModel.favouriteNews.observe(viewLifecycleOwner, Observer {
 
-            fab.visibility = if(it.isEmpty()) View.GONE else View.VISIBLE
+            fab.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
 
             progress.visibility = View.GONE
             adapter.articles = it
@@ -75,9 +71,9 @@ class FavouritesFragment : BaseFragment() {
     private fun showDialog(context: Context, func: () -> Unit) {
 
         val dialBuilder = AlertDialog.Builder(context)
-           dialBuilder.setTitle(R.string.warning)
-           dialBuilder.setIcon(R.drawable.ic_alert)
-           dialBuilder.setMessage(R.string.warningText)
+        dialBuilder.setTitle(R.string.warning)
+        dialBuilder.setIcon(R.drawable.ic_alert)
+        dialBuilder.setMessage(R.string.warningText)
 
         //click SAVE
         dialBuilder.setPositiveButton(context.getString(R.string.remove)) { _, _ ->
