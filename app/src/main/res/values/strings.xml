@@ -11,4 +11,6 @@
     <string name="warningText">Do you want to clear favourite list?</string>
     <string name="warning">Warning!</string>
     <string name="error">Error Fetching News!</string>
+    <string name="noFavouriteFound">No favourite article!</string>
+    <string name="noArticleFound">No article found.\n Check network connection!</string>
 </resources>

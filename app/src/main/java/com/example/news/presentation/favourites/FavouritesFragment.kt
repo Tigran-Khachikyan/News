@@ -34,6 +34,8 @@ class FavouritesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        tvWarning.text = requireContext().getString(R.string.noFavouriteFound)
+
         fab.setOnClickListener { it ->
             showDialog(requireContext()) {
                 Snackbar.make(
@@ -59,9 +61,10 @@ class FavouritesFragment : BaseFragment() {
 
         viewModel.favouriteNews.observe(viewLifecycleOwner, Observer {
 
+            tvWarning.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
             fab.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
-
             progress.visibility = View.GONE
+
             adapter.articles = it
             adapter.notifyDataSetChanged()
 
