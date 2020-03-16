@@ -60,8 +60,6 @@ class WebFragment : Fragment() {
                 else WebSettings.LOAD_CACHE_ELSE_NETWORK
         }
 
-
-
         id?.let {
             viewModel.getArticleById(id!!).observe(viewLifecycleOwner, Observer {
 
