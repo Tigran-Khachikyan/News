@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="title">Guardian News</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="tab_text_1">Latest News</string>
+    <string name="tab_text_2">Favourite</string>
+    <string name="published">Published at</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">OK</string>
+    <string name="successfullyRemoved">Favourite list is cleared.</string>
+    <string name="warningText">Do you want to clear favourite list?</string>
+    <string name="warning">Warning!</string>
+</resources>
