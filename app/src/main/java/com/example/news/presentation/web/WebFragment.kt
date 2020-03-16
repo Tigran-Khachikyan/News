@@ -2,6 +2,7 @@ package com.example.news.presentation.web
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,8 @@ class WebFragment : Fragment() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                progressWeb.visibility = View.GONE
+                Log.d("assas","progressWeb: $progressWeb")
+                progressWeb?.apply { visibility = View.GONE }
             }
         }
         webView.settings.apply {
@@ -71,6 +73,5 @@ class WebFragment : Fragment() {
             })
         }
     }
-
 
 }
