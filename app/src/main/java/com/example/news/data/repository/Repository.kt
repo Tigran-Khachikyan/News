@@ -2,6 +2,7 @@ package com.example.news.data.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.example.news.R
 import com.example.news.data.api.NewsApi
 import com.example.news.data.api.hasNetwork
 import com.example.news.data.db.NewsDao
@@ -20,7 +21,7 @@ class Repository(
         if (hasNetwork(context)) {
             val newsResponse = safeApiCall(
                 call = { newsApi.getNewsAsync().await() },
-                errorMessage = "Error Fetching News"
+                errorMessage = context.getString(R.string.error)
             )
             val articles = newsResponse?.response?.results
             if (articles != null && articles.isNotEmpty()) {

@@ -1,12 +1,10 @@
-package com.example.news.presentation.home.favourites
+package com.example.news.presentation.favourites
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.news.domain.models.Article
-import com.example.news.domain.use_cases.OnFavoriteChangeListener
-import com.example.news.presentation.home.BaseViewModel
+import com.example.news.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

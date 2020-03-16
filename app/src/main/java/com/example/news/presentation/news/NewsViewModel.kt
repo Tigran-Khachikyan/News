@@ -1,15 +1,9 @@
-package com.example.news.presentation.home.news
+package com.example.news.presentation.news
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.news.data.api.NewsApi
-import com.example.news.data.api.RetrofitService
-import com.example.news.data.db.Database
-import com.example.news.data.repository.Repository
 import com.example.news.domain.models.Article
-import com.example.news.domain.use_cases.OnFavoriteChangeListener
-import com.example.news.presentation.home.BaseViewModel
+import com.example.news.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

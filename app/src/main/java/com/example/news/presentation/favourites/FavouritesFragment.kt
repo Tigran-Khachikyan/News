@@ -1,4 +1,4 @@
-package com.example.news.presentation.home.favourites
+package com.example.news.presentation.favourites
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,19 +11,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.news.R
-import com.example.news.domain.adapters.AdapterRecView
-import com.example.news.presentation.home.BaseFragment
+import com.example.news.presentation.RecyclerViewAdapter
+import com.example.news.presentation.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class FavouritesFragment : BaseFragment() {
 
     companion object {
-        fun newInstance() = FavouritesFragment()
+        fun newInstance() =
+            FavouritesFragment()
     }
 
     private lateinit var viewModel: FavouritesViewModel
-    private lateinit var adapter: AdapterRecView
+    private lateinit var adapter: RecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +49,11 @@ class FavouritesFragment : BaseFragment() {
             }
         }
 
-        adapter = AdapterRecView(null, this, viewModel)
+        adapter = RecyclerViewAdapter(
+            null,
+            this,
+            viewModel
+        )
         recyclerArticles.setHasFixedSize(true)
         recyclerArticles.layoutManager = LinearLayoutManager(
             requireContext(),

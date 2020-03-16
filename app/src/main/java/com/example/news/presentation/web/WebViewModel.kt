@@ -1,10 +1,9 @@
-package com.example.news.presentation.home.web
+package com.example.news.presentation.web
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.example.news.domain.models.Article
-import com.example.news.presentation.home.BaseViewModel
+import com.example.news.presentation.base.BaseViewModel
 
 class WebViewModel(application: Application) : BaseViewModel(application) {
 

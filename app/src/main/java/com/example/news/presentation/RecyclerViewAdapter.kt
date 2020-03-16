@@ -1,4 +1,4 @@
-package com.example.news.domain.adapters
+package com.example.news.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +11,12 @@ import com.example.news.domain.models.Article
 import com.example.news.domain.use_cases.OnFavoriteChangeListener
 import com.example.news.domain.use_cases.OnHolderClickListener
 
-class AdapterRecView(
+class RecyclerViewAdapter(
     var articles: List<Article>?,
     private val onHolderClickListener: OnHolderClickListener?,
     private val onFavoriteChangeListener: OnFavoriteChangeListener?
 ) :
-    RecyclerView.Adapter<AdapterRecView.ArticleHolder>() {
+    RecyclerView.Adapter<RecyclerViewAdapter.ArticleHolder>() {
 
     inner class ArticleHolder(
         itemView: View,
