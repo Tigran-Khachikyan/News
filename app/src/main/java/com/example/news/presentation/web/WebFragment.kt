@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.news.R
 import com.example.news.data.api.hasNetwork
 import com.example.news.presentation.KEY_ID
-import kotlinx.android.synthetic.main.web_fragment.*
+import kotlinx.android.synthetic.main.fragment_web.*
 
 class WebFragment : Fragment() {
 
@@ -31,7 +31,7 @@ class WebFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(WebViewModel::class.java)
-        return inflater.inflate(R.layout.web_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_web, container, false)
     }
 
     @SuppressLint("SetJavaScriptEnabled")
