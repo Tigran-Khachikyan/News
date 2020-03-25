@@ -5,9 +5,10 @@ data class News(
     val orderBy: String,
     val pageSize: Int,
     val pages: Int,
-    val results: List<Article>,
+    val results: List<ModelApi>,
     val startIndex: Int,
     val status: String,
     val total: Int,
-    val userTier: String
+    val userTier: String,
+    val content: ModelApi
 )

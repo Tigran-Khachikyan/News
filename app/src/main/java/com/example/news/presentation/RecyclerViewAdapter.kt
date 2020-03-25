@@ -7,21 +7,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.news.R
-import com.example.news.domain.models.Article
-import com.example.news.domain.use_cases.OnFavoriteChangeListener
-import com.example.news.domain.use_cases.OnHolderClickListener
+import com.example.news.domain.models.ModelApi
+import com.example.news.domain.models.ModelDb
+import com.example.news.domain.use_cases.OnAdapterFeaturesChangeListener
 
 class RecyclerViewAdapter(
-    var articles: List<Article>?,
-    private val onHolderClickListener: OnHolderClickListener?,
-    private val onFavoriteChangeListener: OnFavoriteChangeListener?
+    var articles: List<ModelDb>?,
+    private val onFavoriteChangeListener: OnAdapterFeaturesChangeListener?
 ) :
     RecyclerView.Adapter<RecyclerViewAdapter.ArticleHolder>() {
 
     inner class ArticleHolder(
         itemView: View,
-        onHolderClickListener: OnHolderClickListener?,
-        onFavoriteChangeListener: OnFavoriteChangeListener?
+        onFavoriteChangeListener: OnAdapterFeaturesChangeListener?
     ) : RecyclerView.ViewHolder(itemView) {
 
         val tvCategory: TextView = itemView.findViewById(R.id.tvCategory)
@@ -40,7 +38,7 @@ class RecyclerViewAdapter(
             itemView.setOnClickListener {
                 val article = articles?.get(adapterPosition)
                 article?.let {
-                    onHolderClickListener?.getArticle(it.id)
+                    onFavoriteChangeListener?.openWebFragment(it.id)
                 }
             }
         }
@@ -50,7 +48,7 @@ class RecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.holder_article, parent, false)
-        return ArticleHolder(view, onHolderClickListener, onFavoriteChangeListener)
+        return ArticleHolder(view, onFavoriteChangeListener)
     }
 
     override fun getItemCount(): Int = articles?.size ?: 0

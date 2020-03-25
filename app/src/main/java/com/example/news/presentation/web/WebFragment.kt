@@ -58,9 +58,9 @@ class WebFragment : Fragment() {
             viewModel.getArticleById(id!!).observe(viewLifecycleOwner, Observer {
 
                 val dateTime =
-                    requireContext().getString(R.string.published) + " " + it.webPublicationDate
+                    requireContext().getString(R.string.published) + " " + it?.webPublicationDate
                 tv_DateTime.text = dateTime
-                webView.loadUrl(it.webUrl)
+                webView.loadUrl(it?.webUrl)
             })
         }
     }

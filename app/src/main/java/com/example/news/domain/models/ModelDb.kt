@@ -5,20 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "ARTICLES")
-data class Article(
-    val apiUrl: String,
+data class ModelDb(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "_id")
     val id: String,
-    val isHosted: Boolean,
-    val pillarId: String,
-    val pillarName: String,
-    val sectionId: String,
-    val sectionName: String,
-    val type: String,
     val webPublicationDate: String,
+    val webUrl: String,
+    val sectionName: String,
     val webTitle: String,
-    val webUrl: String
-){
-    var isFavourite: Boolean = false
-}
+    var isFavourite: Boolean
+)
+

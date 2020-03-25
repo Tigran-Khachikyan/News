@@ -6,9 +6,8 @@ import com.example.news.R
 import com.example.news.data.api.NewsApi
 import com.example.news.data.api.hasNetwork
 import com.example.news.data.db.NewsDao
-import com.example.news.domain.models.Article
-import com.example.news.domain.repository.AppRepository
-import com.example.news.domain.repository.SafeApiCall
+import com.example.news.domain.models.ModelApi
+import com.example.news.domain.models.ModelDb
 
 class Repository(
     private val context: Context,
@@ -16,30 +15,40 @@ class Repository(
     private val newsDao: NewsDao
 ) : SafeApiCall, AppRepository {
 
-    override suspend fun updateDb() {
+    /* override suspend fun updateDb() {
 
+         if (hasNetwork(context)) {
+             val newsResponse = safeApiCall(
+                 call = { newsApi.getNewsAsync().await() },
+                 errorMessage = context.getString(R.string.error)
+             )
+             val articles = newsResponse?.response?.results
+             if (articles != null && articles.isNotEmpty()) {
+                 newsDao.clearAll()
+                 newsDao.insert(articles)
+             }
+         }
+     }*/
+
+    override suspend fun getNewsApi(page: Int): List<ModelApi>? {
+        var articles: List<ModelApi>? = null
         if (hasNetwork(context)) {
             val newsResponse = safeApiCall(
-                call = { newsApi.getNewsAsync().await() },
+                call = { newsApi.getNewsAsync(page).await() },
                 errorMessage = context.getString(R.string.error)
             )
-            val articles = newsResponse?.response?.results
-            if (articles != null && articles.isNotEmpty()) {
-                newsDao.clear()
-                newsDao.insert(articles)
-            }
+            newsResponse?.response?.results?.let { articles = it }
         }
+        return articles
     }
 
-    override fun getArticle(id: String): LiveData<Article> = newsDao.getArticle(id)
+    override fun getSavedArticle(id: String): ModelDb? = newsDao.getArticle(id)
 
-    override fun getNews(): LiveData<List<Article>> = newsDao.getAll()
+    override fun getFavourites(): LiveData<List<ModelDb>> = newsDao.getAll()
 
-    override fun getFavourites(): LiveData<List<Article>> = newsDao.getFavourites()
+    override suspend fun save(article: ModelDb) = newsDao.insert(article)
 
-    override suspend fun markAsFavourite(id: String) = newsDao.setFavourite(id)
+    override suspend fun remove(id: String) = newsDao.removeFavourite(id)
 
-    override suspend fun removeFromFavourites(id: String) = newsDao.removeFavourite(id)
-
-    override suspend fun clearAllFavourites() = newsDao.removeAllFavourites()
+    override suspend fun clearAll() = newsDao.clearAll()
 }

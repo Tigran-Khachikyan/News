@@ -1,19 +1,18 @@
 package com.example.news.presentation.base
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news.data.api.NewsApi
 import com.example.news.data.api.RetrofitService
 import com.example.news.data.db.Database
 import com.example.news.data.repository.Repository
-import com.example.news.domain.models.Article
-import com.example.news.domain.use_cases.OnFavoriteChangeListener
+import com.example.news.domain.models.ModelDb
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel(application: Application) : AndroidViewModel(application),
-    OnFavoriteChangeListener {
+abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
     protected val repository: Repository by lazy {
         Repository(
@@ -23,15 +22,15 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         )
     }
 
-    override fun addIntoFavourites(article: Article) {
+    fun addIntoFavourites(article: ModelDb) {
         viewModelScope.launch(Dispatchers.Default) {
-            repository.markAsFavourite(article.id)
+            repository.save(article)
         }
     }
 
-    override fun removeFromFavourites(id: String) {
+    fun removeFromFavourites(id: String) {
         viewModelScope.launch(Dispatchers.Default) {
-            repository.removeFromFavourites(id)
+            repository.remove(id)
         }
     }
 }

@@ -64,4 +64,11 @@ dependencies {
 
     //livedata{IO}
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha01"
+
+    //KOIN
+    // Koin AndroidX Scope feature
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel feature
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
 }
